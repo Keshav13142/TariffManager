@@ -19,7 +19,7 @@ export class ManagerDeclineComponent implements OnInit {
   ) {}
   role: string;
   date: any;
-  remark: '';
+  remarks: '';
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role');
     this.setDate();
@@ -37,7 +37,7 @@ export class ManagerDeclineComponent implements OnInit {
   }
   submit() {
     this.expense.status = 'declined';
-    this.expense.remark = this.remark;
+    this.expense.remark = this.remarks;
     this.managerService.updateExpense(this.expense).subscribe(
       (data: any) => {
         this.this_dialog.close(true);

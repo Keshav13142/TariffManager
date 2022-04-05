@@ -66,9 +66,7 @@ export class ManagerApproveComponent implements OnInit {
   }
   view(exp: any) {
     const dialogRef = this.dialog.open(ViewExpenseComponent, { data: exp });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   refresh() {
     this.managerService.setAllExpenses().subscribe(
@@ -87,6 +85,7 @@ export class ManagerApproveComponent implements OnInit {
     this.approved = [];
     this.declined = [];
     for (let exp of this.expenses) {
+      if (exp.remark == '' || exp.remark == null) exp.remark = 'Processing';
       if (exp.status == 'approved') this.approved.push(exp);
       if (exp.status == 'pending') this.pending.push(exp);
       if (exp.status == 'declined') this.declined.push(exp);

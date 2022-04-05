@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Expense } from 'src/app/services/expense/Expense';
 import { ExpenseService } from 'src/app/services/expense/expense.service';
 import { ViewFileComponent } from '../view-file/view-file.component';
 
@@ -12,7 +13,7 @@ import { ViewFileComponent } from '../view-file/view-file.component';
 export class ViewExpenseComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public expense: any,
+    @Inject(MAT_DIALOG_DATA) public expense: Expense,
     public this_dialog: MatDialogRef<ViewExpenseComponent>,
     public expenseService: ExpenseService
   ) {}
@@ -23,8 +24,6 @@ export class ViewExpenseComponent implements OnInit {
     this.setDate();
   }
   setDate() {
-    if (this.expense.remark == '' || this.expense.remark == null)
-      this.expense.remark == 'Processing';
     this.date = new Date(this.expense.datedOn).toLocaleDateString();
   }
   view() {

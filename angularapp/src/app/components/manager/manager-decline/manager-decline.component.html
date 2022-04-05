@@ -33,19 +33,21 @@
                         <td>{{expense.status}}</td>
                     </tr>
                 </table>
-                <mat-form-field class="w100" appearance="outline">
-                    <mat-label>Remarks</mat-label>
-                    <input name="remark" [(ngModel)]="remark" type="remark" matInput placeholder="Enter Remarks">
-                    <mat-icon matSuffix>description</mat-icon>
-                </mat-form-field>
-                <div style="display:flex; justify-content: center; margin-top: 20px;">
-                    <button type="submit" mat-raised-button color="warn" (click)="submit()">
-                        Decline
-                    </button>
-                    <button style="margin-left: 20px;" (click)="close()" mat-raised-button
-                        color="primary">Cancel</button>
-
-                </div>
+                <form #remark="ngForm" (ngSubmit)="submit()">
+                    <mat-form-field class="w100" appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <input required name="remarks" [(ngModel)]="remarks" type="text" matInput
+                            placeholder="Enter Remarks">
+                        <mat-icon matSuffix>badge</mat-icon>
+                    </mat-form-field>
+                    <div style="display:flex; justify-content: center; margin-top: 20px;">
+                        <button [disabled]="remark.invalid" type="submit" mat-raised-button color="warn">
+                            Decline
+                        </button>
+                        <button type="button" style="margin-left: 20px;" (click)="close()" mat-raised-button
+                            color="primary">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
