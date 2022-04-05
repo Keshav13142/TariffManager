@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-title style="font-size: 28px; font-weight: 400px; text-align: center;">Add Employees</mat-card-title>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row" style=" margin-top: 20px;">
+        <div class="col-md-6 offset-md-3">
+          <form #signupForm="ngForm" (ngSubmit)="formSubmit()">
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input required name="email" [(ngModel)]="emp.email" type="email" [formControl]="email" matInput
+                placeholder="Enter Email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input required name="username" [(ngModel)]="emp.username" type="email" matInput
+                placeholder="Enter Username">
+              <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>mobile Number</mat-label>
+              <input required name="mobileNumber" [(ngModel)]="emp.mobileNumber" type="number" matInput
+                placeholder="Enter Phone Number">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Experience</mat-label>
+              <input type="text" id="enterExperience" matInput placeholder="Enter Experience">
+              <mat-icon matSuffix>description</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Specialist</mat-label>
+              <input type="text" id="enterSpecialist" matInput placeholder="Enter Specialization">
+              <mat-icon matSuffix>grade</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input id="password" [type]="hide ? 'password' : 'text'" required name="password"
+                [(ngModel)]="emp.password" matInput placeholder="Enter Password">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input [type]="hide_cf ? 'password' : 'text'" id="confirmPassword" required name="pass" [(ngModel)]="pass"
+                matInput placeholder="Confirm Password">
+              <button type="button" mat-icon-button matSuffix (click)="hide_cf = !hide_cf"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide_cf ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w100">
+              <mat-label>Role</mat-label>
+              <mat-select [(value)]="emp.role" placeholder="Role">
+                <mat-option value="employee">Employee</mat-option>
+                <mat-option value="manager">Manager</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
+              <button id="addButton" [disabled]="signupForm.invalid||email.invalid" class="full-w" type="submit"
+                mat-raised-button color="primary">ADD</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

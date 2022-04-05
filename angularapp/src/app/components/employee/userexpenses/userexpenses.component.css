@@ -1,0 +1,27 @@
+.card{
+  margin: 20px 0px 20px 0px;
+}
+.card-x{
+margin: 0;
+}
+.mat-card.scrollable-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card.scrollable-content mat-card-content {
+    overflow-y: auto;
+}
+
+.list{
+  font-size: 20px;
+}
+
+.info{
+  position:fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    font-weight: 300;
+    color: rgb(111, 111, 235);
+}

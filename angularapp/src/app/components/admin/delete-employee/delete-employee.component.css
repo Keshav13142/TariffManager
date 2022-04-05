@@ -1,0 +1,11 @@
+.table-h{
+    width: 100%;
+}
+.table-h tr td{
+    padding: 20px 30px;
+    border: .5px solid rgb(241, 233, 233);
+    border-radius: 50%;
+}
+.bold{
+    font-weight: 500;
+}

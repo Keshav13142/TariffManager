@@ -1,0 +1,17 @@
+.full-w{
+    width: 100%;
+}
+.mar-top{
+    margin-top: 40px;
+}
+.wauto{
+    width: auto;
+}
+.h-custom {
+    height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+    .h-custom {
+      height: 100%;
+    }
+  }

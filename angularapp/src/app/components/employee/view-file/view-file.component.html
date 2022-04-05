@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="text-center">Receipt</h1>
+<div mat-dialog-content>
+    <img src="{{receipt}}" alt="File not Found">
+    <div style="display:flex; justify-content: center; margin-top: 20px;">
+        <button (click)="print()" mat-raised-button color="primary">Download</button>
+        <button (click)="close()" style="margin-left: 20px;" mat-raised-button color="warn">Close</button>
+    </div>
+</div>

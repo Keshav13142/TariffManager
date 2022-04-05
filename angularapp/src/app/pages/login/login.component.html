@@ -1,0 +1,43 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5  wauto">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuO-DSqmIjKR2_ft2HsHLM48kl5eW4Ae-HjXxqd_ZIw7Zno3bMm7PEwAs_FzZ4MJycIcE&usqp=CAU"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="container text-center" style="font-size: 27px; margin-bottom: 20px;">
+                    <mat-icon>calculate</mat-icon>
+                    <button mat-button routerLink="/login" style="font-size: 27px;">Tariff Manager</button>
+                </div>
+                <mat-card id="loginBox">
+                    <h2 style="margin-bottom: 20px; color: rgb(73, 73, 250);" class="text-center">Sign into your account
+                    </h2>
+                    <form #loginForm="ngForm" (ngSubmit)="validate()">
+
+                        <mat-form-field class="full-w" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input id="email" required name="email" [(ngModel)]="login.email" type="email" matInput
+                                placeholder="Enter Email">
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="full-w" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input id="password" required name="password" [(ngModel)]="login.password" type="password"
+                                matInput placeholder="Enter Password">
+                            <mat-icon matSuffix>key</mat-icon>
+                        </mat-form-field>
+                        <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
+                            <button [disabled]="loginForm.invalid" id="loginButton" class="full-w" type="submit" mat-raised-button color="primary">Sign
+                                in</button>
+                        </div>
+                    </form>
+                    <div class="container text-center" style="margin-top: 20px; font-size: 17px;">
+                        <span>New User?</span>
+                        <a id="signupLink" routerLink="/signup" style="padding-left: 20px;">Sign up Here</a>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

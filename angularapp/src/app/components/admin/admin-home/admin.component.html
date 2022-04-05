@@ -1,0 +1,40 @@
+<div style="display: flex; justify-items:left ; margin-top: 10px;">
+  <mat-form-field style="margin-right:20px;">
+    <mat-label>Search By</mat-label>
+    <mat-select [(value)]="search">
+      <mat-option value="Name">Name</mat-option>
+      <mat-option value="Email">Email</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="legacy">
+    <mat-label>Search</mat-label>
+    <input id="searchBox" type="text" name="searchVal" (input)="Search()" [(ngModel)]="searchVal" matInput
+      placeholder="search">
+  </mat-form-field>
+  <button mat-raised-button style="height: fit-content; margin-left: 10px;" (click)="reset()" color="accent">
+    Clear
+  </button>
+  <button style="margin-left: 20px;" (click)="refresh()" mat-icon-button>
+    <mat-icon>sync</mat-icon>
+  </button>
+</div>
+<mat-card class="scrollable-content">
+  <mat-card-content>
+    <mat-list class="card" *ngFor="let e of empl">
+      <mat-list-item style="padding-left:30px;" *ngIf="e.active==true">
+        <div mat-line>Name:&nbsp;{{e.username}}</div>
+        <div mat-line>E-mail:&nbsp;{{e.email}}</div>
+        <mat-divider></mat-divider>
+        <button mat-raised-button color="primary" (click)="view(e)" style="margin: 10px;">
+          View
+        </button>
+        <button (click)="edit(e)" mat-mini-fab color="accent" style="margin: 10px">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="delete(e)" mat-mini-fab color="warn" style="margin: 10px;">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

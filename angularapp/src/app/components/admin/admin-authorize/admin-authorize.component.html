@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title style="font-weight: 300px; text-align: center;">Authorize Employees</mat-card-title>
+    <mat-card-content>
+      <div style="display: flex; justify-items:left; margin:20px 0px 20px 20px;">
+        <h1>Authorize</h1>
+        <button style="margin-left: 20px;" (click)="refresh()" mat-icon-button>
+            <mat-icon>sync</mat-icon>
+        </button>
+    </div>
+      <h2 style="text-align: center;margin-top: 60px; color: blue; margin-bottom: 20px;"  *ngIf="notAuth.length==0">No New Employees To Authorize</h2>
+      <mat-list *ngFor="let e of notAuth">
+        <mat-list-item class="card" style="padding-left:30px;">
+          <div mat-line>Name:&nbsp;{{e.username}}</div>
+          <div mat-line>E-mail:&nbsp;{{e.email}}</div>
+          <mat-divider></mat-divider>
+          <mat-radio-group [(ngModel)]="role">
+            <mat-radio-button value="employee">Employee</mat-radio-button>
+            <mat-radio-button value="manager">Manager</mat-radio-button>
+          </mat-radio-group>
+          <button mat-raised-button color="primary" (click)="view(e)" style="margin: 10px;">
+            View
+          </button>
+          <button (click)="auth(e,'true')" mat-mini-fab color="success" style="margin: 10px">
+            <mat-icon>check_circle_outline</mat-icon>
+          </button>
+          <button (click)="auth(e,'false')" mat-mini-fab color="warn" style="margin: 10px;">
+            <mat-icon>dangerous</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>

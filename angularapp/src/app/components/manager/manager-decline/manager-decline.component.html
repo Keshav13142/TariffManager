@@ -1,0 +1,52 @@
+<h1 mat-dialog-title class="text-center">Expense Details</h1>
+<div mat-dialog-content>
+    <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col">
+                <table class="table-h">
+                    <tr *ngIf="role=='manager'">
+                        <td class="bold">Claimed By</td>
+                        <td>{{expense.claimedBy.username}}</td>
+                    </tr>
+                    <tr *ngIf="role=='manager'">
+                        <td class="bold">Email</td>
+                        <td>{{expense.claimedBy.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Bill Number</td>
+                        <td>{{expense.billNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Price</td>
+                        <td>{{expense.billCost}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Date</td>
+                        <td>{{date}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Description</td>
+                        <td>{{expense.description}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Status</td>
+                        <td>{{expense.status}}</td>
+                    </tr>
+                </table>
+                <mat-form-field class="w100" appearance="outline">
+                    <mat-label>Remarks</mat-label>
+                    <input name="remark" [(ngModel)]="remark" type="remark" matInput placeholder="Enter Remarks">
+                    <mat-icon matSuffix>description</mat-icon>
+                </mat-form-field>
+                <div style="display:flex; justify-content: center; margin-top: 20px;">
+                    <button type="submit" mat-raised-button color="warn" (click)="submit()">
+                        Decline
+                    </button>
+                    <button style="margin-left: 20px;" (click)="close()" mat-raised-button
+                        color="primary">Cancel</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

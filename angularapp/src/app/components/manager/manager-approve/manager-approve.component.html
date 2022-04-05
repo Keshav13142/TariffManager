@@ -1,0 +1,92 @@
+<mat-tab-group mat-align-tabs="center" style="height: max-content;">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon style="margin-right: 10px;">running_with_errors</mat-icon>
+            Pending
+        </ng-template>
+        <div style="display: flex; justify-items:left ; margin:20px 0px 0px 20px;">
+            <h1 style="margin-left: 20px;">Pending Expenses</h1>
+            <button style="margin-left: 20px; margin-bottom: 10px;" (click)="refresh()" mat-icon-button>
+                <mat-icon>sync</mat-icon>
+            </button>
+        </div>
+        <mat-card>
+            <mat-card-content>
+                <mat-list *ngFor="let e of pending">
+                    <mat-list-item class="card-x" *ngIf="e.claimedBy.email!=emp.email">
+                        <div mat-line>Total price: {{e.billCost}}</div>
+                        <div mat-line>Description :{{e.description}}</div>
+                        <div mat-line>Status:{{e.status}}</div>
+                        <mat-divider></mat-divider>
+                        <button mat-raised-button color="primary" (click)="view(e)" style="margin: 10px;">
+                            View
+                        </button>
+                        <button mat-mini-fab color="success" (click)="approveExpense(e)" style="margin-left: 10px;">
+                            <mat-icon>check_circle</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" (click)="declineExpense(e)" style="margin-left: 10px;">
+                            <mat-icon>dangerous</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+        <div class="info" *ngIf="pending.length==0">Nothing to See Here :)</div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon style="margin-right: 10px;">check_circle</mat-icon>
+            Approved
+        </ng-template>
+        <div style="display: flex; justify-items:left ; margin:20px 0px 0px 20px;">
+            <h1 style="margin-left: 20px;">Approved Expenses</h1>
+            <button style="margin-left: 20px; margin-bottom: 10px;" (click)="refresh()" mat-icon-button>
+                <mat-icon>sync</mat-icon>
+            </button>
+        </div>
+        <mat-card>
+            <mat-card-content>
+                <mat-list *ngFor="let e of approved">
+                    <mat-list-item class="card-x" *ngIf="e.claimedBy.role=='employee'">
+                        <div mat-line>Total price: {{e.billCost}}</div>
+                        <div mat-line>Description :{{e.description}}</div>
+                        <div mat-line>Status:{{e.status}}</div>
+                        <mat-divider></mat-divider>
+                        <button mat-raised-button color="primary" (click)="view(e)" style="margin: 10px;">
+                            View
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+        <div class="info" *ngIf="approved.length==0">Nothing to See Here :)</div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon style="margin-right: 10px;">error_outline</mat-icon>
+            Declined
+        </ng-template>
+        <div style="display: flex; justify-items:left ; margin:20px 0px 0px 20px;">
+            <h1 style="margin-left: 20px;">Declined Expenses</h1>
+            <button style="margin-left: 20px; margin-bottom: 10px;" (click)="refresh()" mat-icon-button>
+                <mat-icon>sync</mat-icon>
+            </button>
+        </div>
+        <mat-card>
+            <mat-card-content>
+                <mat-list *ngFor="let e of declined">
+                    <mat-list-item class="card-x" *ngIf="e.claimedBy.role=='employee'">
+                        <div mat-line>Total price: {{e.billCost}}</div>
+                        <div mat-line>Description :{{e.description}}</div>
+                        <div mat-line>Status:{{e.status}}</div>
+                        <mat-divider></mat-divider>
+                        <button mat-raised-button color="primary" (click)="view(e)" style="margin: 10px;">
+                            View
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+        <div class="info" *ngIf="declined.length==0">Nothing to See Here :)</div>
+    </mat-tab>
+</mat-tab-group>

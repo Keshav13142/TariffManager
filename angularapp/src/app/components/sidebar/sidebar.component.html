@@ -1,0 +1,18 @@
+<mat-card style="box-shadow:4px 4px 4px rgb(226, 223, 223)">
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button *ngIf="role=='employee'" id="homeButton" routerLink="/employee/dashboard" mat-list-item><mat-icon mat-list-icon>home</mat-icon>Home</button>
+    <button *ngIf="role=='employee'" id="viewExpensesButton" routerLink="/employee/expenses" mat-list-item><mat-icon mat-list-icon>view_list</mat-icon>View Expenses</button>
+    <button *ngIf="role=='employee'" id="addExperienceButton" routerLink="/employee/add" mat-list-item><mat-icon mat-list-icon>add_circle</mat-icon>Add Expense</button>
+    <button *ngIf="role=='employee'" routerLink="/employee/profile" mat-list-item><mat-icon mat-list-icon>account_circle</mat-icon>Profile</button>
+    <button *ngIf="role=='admin'" id="homeButton" routerLink="/admin/dashboard" mat-list-item><mat-icon mat-list-icon>home</mat-icon>Home</button>
+    <button *ngIf="role=='admin'" routerLink="/admin/addEmployee" mat-list-item><mat-icon mat-list-icon>group_add</mat-icon>Add Employee</button>
+    <button *ngIf="role=='admin'" routerLink="/admin/authorize" mat-list-item><mat-icon mat-list-icon>accessibility_new</mat-icon>Authorize</button>
+    <button *ngIf="role=='admin'" routerLink="/admin/profile" mat-list-item><mat-icon mat-list-icon>account_circle</mat-icon>Profile</button>
+    <button *ngIf="role=='manager'" id="homeButton" routerLink="/manager/dashboard" mat-list-item><mat-icon mat-list-icon>home</mat-icon>Home</button>
+    <button *ngIf="role=='manager'" id="viewExpensesButton" routerLink="/manager/expenses" mat-list-item><mat-icon mat-list-icon>view_list</mat-icon>View Expenses</button>
+    <button *ngIf="role=='manager'" id="addExpenseButton" routerLink="/manager/add" mat-list-item><mat-icon mat-list-icon>add_circle</mat-icon>Add Expense</button>
+    <button *ngIf="role=='manager'" routerLink="/manager/approve" mat-list-item><mat-icon mat-list-icon>check_circle</mat-icon>Approve</button>
+    <button *ngIf="role=='manager'" routerLink="/manager/profile" mat-list-item><mat-icon mat-list-icon>account_circle</mat-icon>Profile</button>
+  </mat-action-list>
+</mat-card>

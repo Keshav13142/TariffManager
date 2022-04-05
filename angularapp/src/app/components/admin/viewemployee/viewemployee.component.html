@@ -1,0 +1,33 @@
+<h1 mat-dialog-title class="text-center">Employee Details</h1>
+<div mat-dialog-content>
+    <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col" >
+                <table class="table-h">
+                    <tr>
+                        <td class="bold">Username</td>
+                        <td>{{emp.username}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">E-Mail</td>
+                        <td>{{emp.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Mobile Number</td>
+                        <td>{{emp.mobileNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Role</td>
+                        <td>{{emp.role}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Active</td>
+                        <td>{{emp.active}}</td>
+                    </tr>
+                   
+                </table>
+                <button (click)="close()" mat-raised-button color="primary" style="display: block; width: fit-content; margin: auto; margin-top: 20px;">OK</button>
+            </div>
+        </div> 
+ </div> 
+</div>

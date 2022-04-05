@@ -1,0 +1,74 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5 wauto">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuO-DSqmIjKR2_ft2HsHLM48kl5eW4Ae-HjXxqd_ZIw7Zno3bMm7PEwAs_FzZ4MJycIcE&usqp=CAU"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mar-top">
+        <div class="container text-center" style="font-size: 27px; margin-bottom: 20px;">
+          <mat-icon>calculate</mat-icon>
+          <button mat-button routerLink="/login" style="font-size: 27px;">Tariff Manager</button>
+        </div>
+        <mat-card>
+          <h2 style="margin-bottom: 20px; color: rgb(73, 73, 250);" class="text-center">Create a New Account</h2>
+          <form #signupForm="ngForm" (ngSubmit)="formSubmit()">
+            <mat-form-field class="full-w" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input id="email" required name="email" [(ngModel)]="emp.email" [formControl]="email" type="email"
+                matInput placeholder="Enter Email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-w" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input id="username" required name="username" [(ngModel)]="emp.username" type="text" matInput
+                placeholder="Enter Username">
+              <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-w" appearance="outline">
+              <mat-label>mobile Number</mat-label>
+              <input id="mobileNumber" required name="mobileNumber" [(ngModel)]="emp.mobileNumber" type="number"
+                matInput placeholder="Enter Phone Number">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-w" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input id="password" [type]="hide ? 'password' : 'text'" required name="password"
+                [(ngModel)]="emp.password" matInput placeholder="Enter Password">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field class="full-w" appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input [type]="hide_cf ? 'password' : 'text'" id="confirmPassword" required name="confirmPassword"
+                [(ngModel)]="confirmPassword" matInput placeholder="Confirm Password">
+              <button type="button" mat-icon-button matSuffix (click)="hide_cf = !hide_cf"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide_cf ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full-w">
+              <mat-label>Role</mat-label>
+              <mat-select [(value)]="emp.role" placeholder="Role">
+                <mat-option value="employee">Employee</mat-option>
+                <mat-option value="manager">Manager</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
+              <button [disabled]="signupForm.invalid||email.invalid" id="submitButton" class="full-w" type="submit"
+                mat-raised-button color="primary">Register</button>
+            </div>
+          </form>
+          <div class="container text-center" style="margin-top: 20px; font-size: 17px;">
+            <span>Already have an Account?</span>
+            <a id="signinLink" routerLink="/login" style="padding-left: 20px;">Login Here</a>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>
