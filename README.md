@@ -1,2 +1,2 @@
 # TariffManager
-Angualr + Springboot + MySql
+Angular + Springboot + MySql
