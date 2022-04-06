@@ -14,110 +14,115 @@ import { AdminComponent } from './components/admin/admin-home/admin.component';
 import { EmployeeDashboardComponent } from './components/dashboard/employee-dashboard.component';
 import { AdminAddEmployeeComponent } from './components/admin/admin-add-employee/admin-add-employee.component';
 import { AdminAuthorizeComponent } from './components/admin/admin-authorize/admin-authorize.component';
+import { TestComponent } from './test/test/test.component';
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:"/login",
-    pathMatch:'full',
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
   },
   {
-    path:'login',
-    component:LoginComponent,
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path:'signup',
-    component:RegisterComponent,
+    path: 'signup',
+    component: RegisterComponent,
   },
   {
-   path:'admin',
-   component:UserhomeComponent,
-   children:[
-     {
-       path:'',
-       component:AdminComponent,
-     },
-     {
-       path:'authorize',
-       component:AdminAuthorizeComponent,
-     },
-     {
-       path:'addEmployee',
-       component:AdminAddEmployeeComponent,
-     },
-     {
-       path:'dashboard',
-       component:AdminComponent,
-     },
-     {
-      path:'profile',
-      component:ProfileComponent
-    },
-   ],
-   canActivate:[AdminGuard],
-  },
-  {
-    path:'employee',
-    component:UserhomeComponent,
-    children:[
+    path: 'admin',
+    component: UserhomeComponent,
+    children: [
       {
-        path:'',
-        component:EmployeeDashboardComponent
+        path: '',
+        component: AdminComponent,
       },
       {
-        path:'profile',
-        component:ProfileComponent
+        path: 'authorize',
+        component: AdminAuthorizeComponent,
       },
       {
-        path:'expenses',
-        component:UserexpensesComponent
+        path: 'addEmployee',
+        component: AdminAddEmployeeComponent,
       },
       {
-        path:'add',
-        component:AddExpenseComponent,
+        path: 'dashboard',
+        component: AdminComponent,
       },
       {
-        path:'dashboard',
-        component:EmployeeDashboardComponent
-      }
+        path: 'profile',
+        component: ProfileComponent,
+      },
     ],
-    canActivate:[EmployeeGuard]
+    canActivate: [AdminGuard],
   },
   {
-    path:'manager',
-    component:UserhomeComponent,
-    children:[
+    path: 'employee',
+    component: UserhomeComponent,
+    children: [
       {
-        path:'',
-        component:EmployeeDashboardComponent
+        path: '',
+        component: EmployeeDashboardComponent,
       },
       {
-        path:'profile',
-        component:ProfileComponent
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
-        path:'expenses',
-        component:UserexpensesComponent
+        path: 'expenses',
+        component: UserexpensesComponent,
       },
       {
-        path:'add',
-        component:AddExpenseComponent
+        path: 'add',
+        component: AddExpenseComponent,
       },
       {
-        path:'approve',
-        component:ManagerApproveComponent
+        path: 'dashboard',
+        component: EmployeeDashboardComponent,
       },
-      {
-        path:'dashboard',
-        component:EmployeeDashboardComponent
-      }
     ],
-    canActivate:[ManagerGuard]
-  }
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'manager',
+    component: UserhomeComponent,
+    children: [
+      {
+        path: '',
+        component: EmployeeDashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'expenses',
+        component: UserexpensesComponent,
+      },
+      {
+        path: 'add',
+        component: AddExpenseComponent,
+      },
+      {
+        path: 'approve',
+        component: ManagerApproveComponent,
+      },
+      {
+        path: 'dashboard',
+        component: EmployeeDashboardComponent,
+      },
+    ],
+    canActivate: [ManagerGuard],
+  },
+  {
+    path: 'test',
+    component: TestComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
