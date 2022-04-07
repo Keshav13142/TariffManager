@@ -9,14 +9,16 @@ import { ViewemployeeComponent } from '../viewemployee/viewemployee.component';
 @Component({
   selector: 'app-admin-authorize',
   templateUrl: './admin-authorize.component.html',
-  styleUrls: ['./admin-authorize.component.css']
+  styleUrls: ['./admin-authorize.component.css'],
 })
 export class AdminAuthorizeComponent implements OnInit {
-
-  role="employee";
   empList: Employee[] = [];
   notAuth: Employee[] = [];
-  constructor(private adminService: AdminService, private snack: MatSnackBar, public dialog: MatDialog) { }
+  constructor(
+    private adminService: AdminService,
+    private snack: MatSnackBar,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.setEmployees();
@@ -25,8 +27,7 @@ export class AdminAuthorizeComponent implements OnInit {
     this.empList = this.adminService.getEmployees();
     this.setNotAuth();
   }
-  setNotAuth()
-  {
+  setNotAuth() {
     this.notAuth = [];
     for (let emp of this.empList) {
       if (!emp.active) {
@@ -36,28 +37,26 @@ export class AdminAuthorizeComponent implements OnInit {
   }
 
   auth(emp: Employee, status: string) {
-    let action: string;
-    if (status == "true") {
-      emp.role=this.role;
+    if (status == 'true') {
       emp.active = true;
-      action = "Authorized";
-    }
-    else {
+    } else {
       this.delete(emp);
       return;
     }
     this.adminService.updateEmployees(emp).subscribe(
       (data) => {
         this.adminService.setAllEmployees().subscribe(
-          (data:Employee[]) => {
+          (data: Employee[]) => {
             this.empList = data;
             this.setNotAuth();
-            sessionStorage.setItem("adminAllEmp", JSON.stringify(data));
-            this.snack.open("Employee " + action, "OK", {
-              duration: 3000
+            sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
+            this.snack.open('Employee Authorized', 'OK', {
+              duration: 3000,
             });
           },
-          (error) => { console.log(error); }
+          (error) => {
+            console.log(error);
+          }
         );
       },
       (error) => {
@@ -67,27 +66,27 @@ export class AdminAuthorizeComponent implements OnInit {
   }
   delete(empl: any) {
     const dialogRef = this.dialog.open(DeleteEmployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      this.refresh();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.refresh();
     });
   }
   view(empl: any) {
     const dialogRef = this.dialog.open(ViewemployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.setEmployees();
     });
   }
-  refresh()
-  {
-   this.adminService.setAllEmployees().subscribe(
-     (data:Employee[]) => {
-       this.empList = data;
-       this.setNotAuth();
-       sessionStorage.setItem("adminAllEmp", JSON.stringify(data))
-     },
-     (error) => { console.log(error);
-      this.snack.open("Something Went wrong", "OK", { duration: 3000 }); }
-   );
+  refresh() {
+    this.adminService.setAllEmployees().subscribe(
+      (data: Employee[]) => {
+        this.empList = data;
+        this.setNotAuth();
+        sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
+      },
+      (error) => {
+        console.log(error);
+        this.snack.open('Something Went wrong', 'OK', { duration: 3000 });
+      }
+    );
   }
 }
