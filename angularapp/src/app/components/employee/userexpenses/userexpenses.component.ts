@@ -75,6 +75,9 @@ export class UserexpensesComponent implements OnInit {
     }
   }
   seperate() {
+    this.approved = [];
+    this.declined = [];
+    this.pending = [];
     for (let exp of this.expenses) {
       if (exp.status == 'approved') this.approved.push(exp);
       if (exp.status == 'pending') this.pending.push(exp);

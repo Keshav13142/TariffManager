@@ -12,66 +12,77 @@ import { ViewemployeeComponent } from '../viewemployee/viewemployee.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  search = "Name";
-  searchVal = ""; 
+  search = 'Name';
+  searchVal = '';
   empList: Employee[] = [];
   empl: Employee[] = [];
-  constructor(private adminService: AdminService, public router: Router, private snack: MatSnackBar, private employeeService: EmployeeService, public dialog: MatDialog) { }
+  constructor(
+    private adminService: AdminService,
+    public router: Router,
+    private snack: MatSnackBar,
+    private employeeService: EmployeeService,
+    public dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.setEmployees();
   }
   view(empl: any) {
     const dialogRef = this.dialog.open(ViewemployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe(result => {});
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   edit(empl: any) {
-    const dialogRef = this.dialog.open(EditEmployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      this.refresh();
+    const dialogRef = this.dialog.open(EditEmployeeComponent, {
+      maxWidth: '120vh',
+      maxHeight: '100vh',
+      data: empl,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.refresh();
     });
   }
   delete(empl: any) {
     const dialogRef = this.dialog.open(DeleteEmployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe(result => {
-      if(result)
-      this.refresh();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.refresh();
     });
   }
   Search() {
     this.empl = this.empList;
-    if (this.search == "Name") {
-      this.empl = this.empl.filter(res => {
-        return res.username.toLocaleLowerCase().match(this.searchVal.toLocaleLowerCase());
+    if (this.search == 'Name') {
+      this.empl = this.empl.filter((res) => {
+        return res.username
+          .toLocaleLowerCase()
+          .match(this.searchVal.toLocaleLowerCase());
       });
     }
-    if (this.search == "Email") {
-      this.empl = this.empl.filter(res => {
-        return res.email.toLocaleLowerCase().match(this.searchVal.toLocaleLowerCase());
+    if (this.search == 'Email') {
+      this.empl = this.empl.filter((res) => {
+        return res.email
+          .toLocaleLowerCase()
+          .match(this.searchVal.toLocaleLowerCase());
       });
     }
   }
   reset() {
-    this.searchVal = "";
+    this.searchVal = '';
     this.empl = this.empList;
   }
   setEmployees() {
     this.empList = this.adminService.getEmployees();
     this.empl = this.adminService.getEmployees();
   }
-  refresh()
-  {
+  refresh() {
     this.adminService.setAllEmployees().subscribe(
       (data: Employee[]) => {
-        this.empList=data;
-        this.empl=data;
-        sessionStorage.setItem("adminAllEmp",JSON.stringify(data));
+        this.empList = data;
+        this.empl = data;
+        sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
       },
       (error) => {
-        this.snack.open("Something Went wrong", "OK", { duration: 3000 });
+        this.snack.open('Something Went wrong', 'OK', { duration: 3000 });
       }
     );
   }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,22 +13,22 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UserexpensesComponent } from './components/employee/userexpenses/userexpenses.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddExpenseComponent } from './components/employee/add-expense/add-expense.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { ViewExpenseComponent } from './components/employee/view-expense/view-expense.component';
 import { ViewemployeeComponent } from './components/admin/viewemployee/viewemployee.component';
 import { ManagerApproveComponent } from './components/manager/manager-approve/manager-approve.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { EditEmployeeComponent } from './components/admin/edit-employee/edit-employee.component';
@@ -39,6 +39,8 @@ import { EmployeeDashboardComponent } from './components/dashboard/employee-dash
 import { AdminAddEmployeeComponent } from './components/admin/admin-add-employee/admin-add-employee.component';
 import { AdminAuthorizeComponent } from './components/admin/admin-authorize/admin-authorize.component';
 import { ManagerDeclineComponent } from './components/manager/manager-decline/manager-decline.component';
+import { TestComponent } from './test/test/test.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { ManagerDeclineComponent } from './components/manager/manager-decline/ma
     ViewFileComponent,
     AdminAddEmployeeComponent,
     AdminAuthorizeComponent,
-    ManagerDeclineComponent
+    ManagerDeclineComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,13 +85,14 @@ import { ManagerDeclineComponent } from './components/manager/manager-decline/ma
     MatNativeDateModule,
     MatRippleModule,
     NgxUiLoaderModule,
+    MatGridListModule,
     ReactiveFormsModule,
     NgxUiLoaderHttpModule.forRoot({
-      showForeground:true
+      showForeground: true,
     }),
     MatSelectModule,
     Ng2SearchPipeModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   providers: [
     LoginComponent,
@@ -108,8 +112,8 @@ import { ManagerDeclineComponent } from './components/manager/manager-decline/ma
     EmployeeDashboardComponent,
     ViewFileComponent,
     AdminAddEmployeeComponent,
-    AdminAuthorizeComponent
+    AdminAuthorizeComponent,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
