@@ -36,6 +36,10 @@
                         <td class="bold">Status</td>
                         <td>{{expense.status}}</td>
                     </tr>
+                    <tr *ngIf="role=='employee'">
+                        <td class=" bold">Reviewed By</td>
+                        <td>{{expense.reviewedBy}}</td>
+                    </tr>
                 </table>
                 <div style="display:flex; justify-content: center; margin-top: 20px;">
                     <button mat-raised-button color="accent" (click)="view()">

@@ -24,13 +24,13 @@ public class ExpenseModel {
     @OneToOne
     @JoinColumn(name = "id")
     private UserModel claimedBy;
-
+    private String reviewedBy;
 
     public ExpenseModel() {
     }
 
     public ExpenseModel(String expenseId, int billNumber, byte[] billImage, int billCost, Date datedOn, String remark,
-                        String status, UserModel claimedBy) {
+                        String status, UserModel claimedBy, String reviewedBy) {
         this.expenseId = expenseId;
         this.billNumber = billNumber;
         this.billImage = billImage;
@@ -39,6 +39,7 @@ public class ExpenseModel {
         this.remark = remark;
         this.status = status;
         this.claimedBy = claimedBy;
+        this.reviewedBy = reviewedBy;
     }
 
     public String getExpenseId() {
@@ -99,6 +100,14 @@ public class ExpenseModel {
 
     public UserModel getClaimedBy() {
         return claimedBy;
+    }
+
+    public String getReviewedBy() {
+        return reviewedBy;
+    }
+
+    public void setReviewedBy(String reviewedBy) {
+        this.reviewedBy = reviewedBy;
     }
 
 
