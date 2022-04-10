@@ -33,8 +33,9 @@ export class ManagerApproveComponent implements OnInit {
     this.seperate();
   }
   public approveExpense(exp: Expense) {
+    exp.reviewedBy = this.emp.username;
     exp.status = 'approved';
-    exp.remark = 'paid';
+    exp.remark = 'PAID';
     this.managerService.updateExpense(exp).subscribe(
       (data: any) => {
         this.snack.open('Expense Approved', 'ok', { duration: 3000 });
@@ -46,6 +47,7 @@ export class ManagerApproveComponent implements OnInit {
     );
   }
   public declineExpense(e: Expense) {
+    e.reviewedBy = this.emp.username;
     const dialogRef = this.dialog.open(ManagerDeclineComponent, { data: e });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -65,6 +67,7 @@ export class ManagerApproveComponent implements OnInit {
     );
   }
   view(exp: any) {
+    exp.reviewedBy = this.emp.username;
     const dialogRef = this.dialog.open(ViewExpenseComponent, { data: exp });
     dialogRef.afterClosed().subscribe((result) => {});
   }

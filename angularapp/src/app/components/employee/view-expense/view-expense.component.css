@@ -1,12 +1,22 @@
-.table-h{
-    width: 100%;
+.table-h {
+  width: 100%;
 }
-.table-h tr td{
-    font-size: 17px;
-    padding: 20px 30px;
-    border: .5px solid rgb(241, 233, 233);
-    border-radius: 50%;
+.table-h tr td {
+  font-size: 17px;
+  padding: 20px 30px;
+  border: 0.5px solid rgb(241, 233, 233);
+  border-radius: 50%;
 }
-.bold{
-    font-weight: 500;
+.bold {
+  font-weight: 500;
+}
+#fileUpload {
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
 }

@@ -11,4 +11,5 @@ export interface Expense {
   status: string;
   billImage: any;
   claimedBy: Employee;
+  reviewedBy: string;
 }

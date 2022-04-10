@@ -33,12 +33,13 @@ export class AddExpenseComponent implements OnInit {
   public emp: Employee;
   expense = {
     expenseId: null,
-    description: null,
     billNumber: null,
     billCost: null,
+    description: null,
     datedOn: null,
     claimedBy: null,
   };
+
   constructor(
     private snack: MatSnackBar,
     public expenseService: ExpenseService,
@@ -51,6 +52,7 @@ export class AddExpenseComponent implements OnInit {
     this.setEmployees();
     this.setLimit();
   }
+
   submit() {
     if (
       this.date.value == null ||
@@ -86,8 +88,9 @@ export class AddExpenseComponent implements OnInit {
           this.snack.open('Expense Added Sucessfully', 'OK', {
             duration: 2000,
           });
-          this.expenseService.setLimit(this.emp.email);
           this.expenseService.storeEmpExpenseByEmail(this.emp.email);
+          this.expenseService.setLimit(this.emp.email);
+          this.setLimit();
         },
         (error) => {
           console.log(error);
@@ -99,10 +102,13 @@ export class AddExpenseComponent implements OnInit {
   setEmployees() {
     this.emp = this.empService.getEmployee();
   }
+
   setLimit() {
     this.expenseService.setLimit(this.emp.email).subscribe(
       (data: number) => {
         this.curr_mon = data;
+        console.log(data);
+
         if (this.curr_mon > 5000) {
           this.limit = 0;
         } else {
@@ -124,6 +130,7 @@ export class AddExpenseComponent implements OnInit {
     const file = event.target.files[0];
     this.receipt = file;
   }
+
   getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);

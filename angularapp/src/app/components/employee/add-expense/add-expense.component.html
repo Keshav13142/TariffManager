@@ -1,15 +1,15 @@
 <mat-card id="tariffAddExpenseBody">
-    <h1 style="font-size: 27px;" class="text-center mt-2">Add Expenses</h1>
+    <h1 class="text-center mt-2 heading">Add Expenses</h1>
     <mat-card-content>
         <div class="bootstrap-wrapper">
             <div class="row" style=" margin-top: 60px;">
                 <div class="col-md-6 offset-md-3">
-                    <div style="display:flex; justify-content: flex-start; gap: 20px; ">
+                    <div class="info">
                         <mat-icon *ngIf="limit>0">info</mat-icon>
-                        <div *ngIf="limit>0" style="color: rgb(94, 94, 245); font-size: 20px; margin-bottom: 20px;">This
+                        <div *ngIf="limit>0" style="color: rgb(94, 94, 245); font-size: 20px;">This
                             Month's Quota Left : ₹ {{" "+limit}}</div>
                         <mat-icon *ngIf="limit==0">warning</mat-icon>
-                        <div *ngIf="limit==0" style="color: rgb(236, 95, 95); font-size: 20px; margin-bottom: 20px;">
+                        <div *ngIf="limit==0" style="color: rgb(236, 95, 95); font-size: 20px;">
                             Maximum Amount Claimed this Month</div>
                     </div>
                     <form #addExpense="ngForm" (ngSubmit)="submit()">
@@ -21,28 +21,24 @@
                         </mat-form-field>
                         <mat-form-field class="w100" appearance="outline">
                             <mat-label>Description</mat-label>
-                            <input name="description" [(ngModel)]="expense.description" type="text" matInput
+                            <input required name="description" [(ngModel)]="expense.description" type="text" matInput
                                 placeholder="Enter Description">
                             <mat-icon matSuffix>description</mat-icon>
                         </mat-form-field>
-                        <mat-form-field style="width: 300px; margin-right: 20px;" class="w100" appearance="outline"
-                            color="accent">
+                        <div style="margin-bottom: 20px;">
+                            <input class="form-control" type="file" (change)="selectFile($event)" id="receipt" required>
+                        </div>
+                        <mat-form-field class="w100 date" appearance="outline" color="accent">
                             <mat-label>Choose a date</mat-label>
-                            <input [min]="min_date" [max]="max_date" matInput [formControl]="date"
+                            <input required [min]="min_date" [max]="max_date" matInput [formControl]="date"
                                 [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker">
                                 <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                             </mat-datepicker-toggle>
                             <mat-datepicker #picker disabled="false"></mat-datepicker>
                         </mat-form-field>
-                        <button type="button" color="date" style="margin:10px 0px 20px 0px;" mat-raised-button
-                            (click)="picker.open()">Select Date</button>
-                        <div class="form-group">
-                            <label style="font-size: 20px; margin-right: 16px;" for="receipt">Upload Receipt</label>
-                            <input (change)="selectFile($event)" class="upload"
-                                style="text-decoration: none; margin-right: 10px; width: 400px;" type="file"
-                                id="receipt" name="receipt" />
-                        </div>
+                        <button type="button" class="btn" color="date" mat-raised-button (click)="picker.open()">Select
+                            Date</button>
                         <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
                             <button [disabled]="!status" class="full-w" type="submit" mat-raised-button
                                 color="primary">Add</button>

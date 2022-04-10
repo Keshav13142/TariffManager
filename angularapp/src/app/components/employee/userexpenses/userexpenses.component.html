@@ -8,25 +8,24 @@
         </div>
         <div style="display: flex; flex-direction: row;gap: 30px; flex-wrap:wrap;">
             <mat-card style="border: 2px solid rgb(235, 230, 230);" *ngFor="let e of expenses;">
-                <mat-card-title style="font-size: 22px; font-weight:410; margin-bottom:20px;">Bill Number :
+                <mat-card-title class="billnum">Bill Number :
                     {{e.billNumber}}</mat-card-title>
                 <mat-card-content>
-                    <div *ngIf="e.status=='approved'"
-                        style="font-size: 18px; font-weight: 400;margin-bottom:15px ;color:rgb(18, 228, 18);">Status :
+                    <div *ngIf="e.status=='approved'" class="status" style="color:rgb(18, 228, 18);">Status :
                         {{e.status}}</div>
-                    <div *ngIf="e.status=='pending'"
-                        style="font-size: 18px; font-weight: 400;margin-bottom:15px ;color:rgb(11, 120, 221);">Status :
+                    <div *ngIf="e.status=='pending'" class="status" style="color:rgb(11, 120, 221);">Status :
                         {{e.status}}</div>
-                    <div *ngIf="e.status=='declined'"
-                        style="font-size: 18px; font-weight: 400;margin-bottom:15px ;color:rgb(196, 7, 7);">Status :
+                    <div *ngIf="e.status=='declined'" class="status" style="color:rgb(196, 7, 7);">Status :
                         {{e.status}}</div>
-                    <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Price : {{e.billCost}}</div>
-                    <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Description : {{e.description}}
+                    <div class="desc">Price : {{e.billCost}}</div>
+                    <div class="desc">Description : {{e.description}}
                     </div>
-                    <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Remarks : {{e.remark}}
+                    <div class="desc">Remarks : {{e.remark}}
                     </div>
-                    <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Date :
+                    <div class="desc">Date :
                         {{e.datedOn.toLocaleDateString()}}</div>
+                    <div *ngIf="e.reviewedBy!=null&&e.reviewedBy!=''" class="desc">Reviewed By : {{e.reviewedBy}}
+                    </div>
                 </mat-card-content>
                 <mat-card-actions style="display: flex; justify-content: center;">
                     <button mat-raised-button (click)="view(e)" color="primary">View Receipt</button>
@@ -49,15 +48,20 @@
         <div style="display: flex; flex-direction: row;gap: 30px; flex-wrap:wrap;">
             <ng-container *ngFor="let e of approved;">
                 <mat-card style="border: 2px solid rgb(235, 230, 230);" *ngIf="e.status=='approved'">
-                    <mat-card-title style="font-size: 22px; font-weight:410; margin-bottom:20px;">Bill Number :
+                    <mat-card-title class="billnum">Bill Number :
                         {{e.billNumber}}</mat-card-title>
                     <mat-card-content>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px ;color:rgb(18, 228, 18);">
+                        <div class="status" style="color:rgb(18, 228, 18);">
                             Status : {{e.status}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Price : {{e.billCost}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Remarks : {{e.remark}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Date :
+                        <div class="desc">Price : {{e.billCost}}</div>
+                        <div class="desc">Description : {{e.description}}
+                        </div>
+                        <div class="desc">Remarks : {{e.remark}}
+                        </div>
+                        <div class="desc">Date :
                             {{e.datedOn.toLocaleDateString()}}</div>
+                        <div *ngIf="e.reviewedBy!=null&&e.reviewedBy!=''" class="desc">Reviewed By : {{e.reviewedBy}}
+                        </div>
                     </mat-card-content>
                     <mat-card-actions style="display: flex; justify-content: center;">
                         <button mat-raised-button (click)="view(e)" color="primary">View Receipt</button>
@@ -80,16 +84,21 @@
         </div>
         <div style="display: flex; flex-direction: row;gap: 30px; flex-wrap:wrap;">
             <ng-container *ngFor="let e of pending;">
-                <mat-card style="border: 2px solid rgb(235, 230, 230);" *ngIf="e.status=='pending'">
+                <mat-card class="billnum">
                     <mat-card-title style="font-size: 22px; font-weight:410; margin-bottom:20px;">Bill Number :
                         {{e.billNumber}}</mat-card-title>
                     <mat-card-content>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px; color:rgb(11, 120, 221);">
+                        <div class="status" style="color:rgb(11, 120, 221);">
                             Status : {{e.status}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Price : {{e.billCost}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Remarks : {{e.remark}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Date :
+                        <div class="desc">Price : {{e.billCost}}</div>
+                        <div class="desc">Description : {{e.description}}
+                        </div>
+                        <div class="desc">Remarks : {{e.remark}}
+                        </div>
+                        <div class="desc">Date :
                             {{e.datedOn.toLocaleDateString()}}</div>
+                        <div *ngIf="e.reviewedBy!=null&&e.reviewedBy!=''" class="desc">Reviewed By : {{e.reviewedBy}}
+                        </div>
                     </mat-card-content>
                     <mat-card-actions style="display: flex; justify-content: center;">
                         <button mat-raised-button (click)="view(e)" color="primary">View Receipt</button>
@@ -112,16 +121,21 @@
         </div>
         <div style="display: flex; flex-direction: row;gap: 30px; flex-wrap:wrap;">
             <ng-container *ngFor="let e of declined;">
-                <mat-card style="border: 2px solid rgb(235, 230, 230);" *ngIf="e.status=='declined'">
-                    <mat-card-title style="font-size: 22px; font-weight:410; margin-bottom:20px;">Bill Number :
+                <mat-card class="billnum">
+                    <mat-card-title class="billnum">Bill Number :
                         {{e.billNumber}}</mat-card-title>
                     <mat-card-content>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px;color:rgb(196, 7, 7);">Status :
+                        <div class="status" style="color:rgb(196, 7, 7);">Status :
                             {{e.status}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Price : {{e.billCost}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Remarks : {{e.remark}}</div>
-                        <div style="font-size: 18px; font-weight: 400;margin-bottom:15px">Date :
+                        <div class="desc">Price : {{e.billCost}}</div>
+                        <div class="desc">Description : {{e.description}}
+                        </div>
+                        <div class="desc">Remarks : {{e.remark}}
+                        </div>
+                        <div class="desc">Date :
                             {{e.datedOn.toLocaleDateString()}}</div>
+                        <div *ngIf="e.reviewedBy!=null&&e.reviewedBy!=''" class="desc">Reviewed By : {{e.reviewedBy}}
+                        </div>
                     </mat-card-content>
                     <mat-card-actions style="display: flex; justify-content: center;">
                         <button mat-raised-button (click)="view(e)" color="primary">View Receipt</button>

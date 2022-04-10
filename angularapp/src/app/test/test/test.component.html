@@ -1,4 +1,16 @@
-<mat-grid-list cols="12" rowHeight="1:5.67">
+<!-- <mat-grid-list cols="12" rowHeight="1:5.67">
     <mat-grid-tile colspan="2">1</mat-grid-tile>
     <mat-grid-tile colspan="10">2</mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+<mat-form-field>
+    <div class="myfilebrowser">
+        <mat-toolbar>
+            <input matInput [(ngModel)]="myfilename" readonly name="memberContactNo" />
+            <button type="button" mat-flat-button color="primary">
+                Browse
+            </button>
+        </mat-toolbar>
+        <input type="file" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" name="fileUpload"
+            multiple="multiple" accept="image/*" />
+    </div>
+</mat-form-field>
