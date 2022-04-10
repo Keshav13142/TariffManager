@@ -25,7 +25,7 @@ export class AddExpenseComponent implements OnInit {
     1
   );
   message: '';
-  receipt: any = File;
+  receipt: File = null;
   email = '';
   curr_mon = 0;
   limit = 0;
@@ -54,12 +54,12 @@ export class AddExpenseComponent implements OnInit {
   }
 
   submit() {
-    if (
-      this.date.value == null ||
-      this.expense.billCost <= 0 ||
-      this.expense.billCost == null
-    )
-      this.snack.open('Price or Date Cannot be Empty!!', 'Ok');
+    if (this.expense.billCost <= 0 || this.expense.billCost == null)
+      this.snack.open('Price Cannot be Empty!!', 'Ok');
+    else if (this.date.value.values == '')
+      this.snack.open('Date Cannot be Empty !!', 'Ok');
+    else if (this.receipt == null)
+      this.snack.open('Please Upload your receipt !!', 'Ok');
     else if (this.expense.billCost > this.limit) {
       Swal.fire({
         title: "This month's quota Exceeded limit",
@@ -107,8 +107,6 @@ export class AddExpenseComponent implements OnInit {
     this.expenseService.setLimit(this.emp.email).subscribe(
       (data: number) => {
         this.curr_mon = data;
-        console.log(data);
-
         if (this.curr_mon > 5000) {
           this.limit = 0;
         } else {
