@@ -24,6 +24,13 @@
                 placeholder="Enter Phone Number">
               <mat-icon matSuffix>phone</mat-icon>
             </mat-form-field>
+            <mat-form-field appearance="outline" class="w100">
+              <mat-label>Role</mat-label>
+              <mat-select [(value)]="emp.role" placeholder="Role">
+                <mat-option value="employee">Employee</mat-option>
+                <mat-option value="manager">Manager</mat-option>
+              </mat-select>
+            </mat-form-field>
             <mat-form-field class="w100" appearance="outline">
               <mat-label>Experience</mat-label>
               <input type="text" id="enterExperience" matInput placeholder="Enter Experience">
@@ -51,13 +58,6 @@
                 [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide_cf ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="w100">
-              <mat-label>Role</mat-label>
-              <mat-select [(value)]="emp.role" placeholder="Role">
-                <mat-option value="employee">Employee</mat-option>
-                <mat-option value="manager">Manager</mat-option>
-              </mat-select>
             </mat-form-field>
             <div class="container text-center" style="margin-top: 20px; margin-bottom: 20px;">
               <button id="addButton" [disabled]="signupForm.invalid||email.invalid" class="full-w" type="submit"

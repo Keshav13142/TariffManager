@@ -34,7 +34,7 @@ export class EmployeeDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     this.setEmployee();
     this.setDetails();
   }

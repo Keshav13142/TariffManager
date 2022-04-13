@@ -27,7 +27,7 @@ export class ExpenseService {
   public storeEmpExpenseByEmail(email: string) {
     this.setExpense(email).subscribe(
       (data: Expense[]) => {
-        sessionStorage.setItem('expenses', JSON.stringify(data));
+        localStorage.setItem('expenses', JSON.stringify(data));
       },
       (error) => {
         console.log(error);
@@ -35,7 +35,7 @@ export class ExpenseService {
     );
   }
   public getExpenses() {
-    return JSON.parse(sessionStorage.getItem('expenses'));
+    return JSON.parse(localStorage.getItem('expenses'));
   }
   public deleteExpense(expenseId: string): Observable<String> {
     return this.http.delete<String>(`${baseUrl}/manager/${expenseId}`);

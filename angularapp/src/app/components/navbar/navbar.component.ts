@@ -4,18 +4,15 @@ import { LoginService } from 'src/app/services/login/login.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  constructor(public loginService: LoginService) {}
 
-  constructor(public loginService:LoginService) { }
-
-  ngOnInit(): void {
-  }
-  Logout()
-  {
+  ngOnInit(): void {}
+  Logout() {
     this.loginService.logout();
-    sessionStorage.clear();
-
+    localStorage.clear();
+    localStorage.clear();
   }
 }

@@ -79,7 +79,7 @@ export class AdminComponent implements OnInit {
       (data: Employee[]) => {
         this.empList = data;
         this.empl = data;
-        sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
+        localStorage.setItem('adminAllEmp', JSON.stringify(data));
       },
       (error) => {
         this.snack.open('Something Went wrong', 'OK', { duration: 3000 });
