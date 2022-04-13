@@ -21,7 +21,7 @@ export class ManagerDeclineComponent implements OnInit {
   date: any;
   remarks: '';
   ngOnInit(): void {
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     this.setDate();
     this.this_dialog.backdropClick().subscribe((result) => {
       this.this_dialog.close(false);

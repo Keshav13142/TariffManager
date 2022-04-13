@@ -25,7 +25,7 @@ export class ManagerApproveComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.emp = JSON.parse(sessionStorage.getItem('emp'));
+    this.emp = JSON.parse(localStorage.getItem('emp'));
     this.setExpenses();
   }
   public setExpenses() {
@@ -76,7 +76,7 @@ export class ManagerApproveComponent implements OnInit {
       (data: Expense[]) => {
         this.expenses = data;
         this.seperate();
-        sessionStorage.setItem('managerExp', JSON.stringify(data));
+        localStorage.setItem('managerExp', JSON.stringify(data));
       },
       (error) => {
         console.log(error);
@@ -88,10 +88,12 @@ export class ManagerApproveComponent implements OnInit {
     this.approved = [];
     this.declined = [];
     for (let exp of this.expenses) {
-      if (exp.remark == '' || exp.remark == null) exp.remark = 'Processing';
-      if (exp.status == 'approved') this.approved.push(exp);
-      if (exp.status == 'pending') this.pending.push(exp);
-      if (exp.status == 'declined') this.declined.push(exp);
+      if (exp.claimedBy.email != this.emp.email) {
+        if (exp.remark == '' || exp.remark == null) exp.remark = 'Processing';
+        if (exp.status == 'approved') this.approved.push(exp);
+        if (exp.status == 'pending') this.pending.push(exp);
+        if (exp.status == 'declined') this.declined.push(exp);
+      }
     }
   }
 }

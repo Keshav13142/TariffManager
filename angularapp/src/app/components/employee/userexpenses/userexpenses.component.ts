@@ -33,7 +33,7 @@ export class UserexpensesComponent implements OnInit {
     username: null,
   };
   ngOnInit(): void {
-    this.email = sessionStorage.getItem('email');
+    this.email = localStorage.getItem('email');
     this.setEmployee();
     this.setExpenses();
   }
@@ -56,7 +56,7 @@ export class UserexpensesComponent implements OnInit {
         this.expenses = data;
         this.setDate(this.expenses);
         this.seperate();
-        sessionStorage.setItem('expenses', JSON.stringify(data));
+        localStorage.setItem('expenses', JSON.stringify(data));
       },
       (error) => {
         console.log(error);

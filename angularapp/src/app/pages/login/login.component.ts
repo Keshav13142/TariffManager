@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    sessionStorage.clear();
+    if (localStorage.getItem('role') != null) {
+      this.router.navigate([localStorage.getItem('role')]);
+    } else {
+      localStorage.clear();
+    }
   }
   validate() {
     if (

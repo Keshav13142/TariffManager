@@ -20,7 +20,7 @@ export class ViewExpenseComponent implements OnInit {
   role: string;
   date: any;
   ngOnInit(): void {
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     this.setDate();
   }
   setDate() {

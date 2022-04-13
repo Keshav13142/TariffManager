@@ -6,20 +6,20 @@ import { Employee } from '../Employee/Employee';
 import baseUrl from '../url';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
-  constructor(private http: HttpClient, private snack: MatSnackBar) { }
+  constructor(private http: HttpClient, private snack: MatSnackBar) {}
   public setAllEmployees() {
     return this.http.get<Employee[]>(`${baseUrl}/admin`);
   }
   public storeAllAdminEmployees() {
     this.setAllEmployees().subscribe(
       (data: Employee[]) => {
-        sessionStorage.setItem("adminAllEmp", JSON.stringify(data));
+        localStorage.setItem('adminAllEmp', JSON.stringify(data));
       },
       (error) => {
-        this.snack.open("Something Went wrong", "OK", { duration: 3000 });
+        this.snack.open('Something Went wrong', 'OK', { duration: 3000 });
       }
     );
   }
@@ -27,18 +27,18 @@ export class AdminService {
   public setEmployee(email: string) {
     this.http.get<Employee>(`${baseUrl}/admin/${email}`).subscribe(
       (data: any) => {
-        sessionStorage.setItem("adminEmp", JSON.stringify(data));
+        localStorage.setItem('adminEmp', JSON.stringify(data));
       },
       (error) => {
-        this.snack.open("Something Went wrong", "OK", { duration: 3000 });
+        this.snack.open('Something Went wrong', 'OK', { duration: 3000 });
       }
     );
   }
-  public  getEmployee() {
-    return JSON.parse(sessionStorage.getItem("adminEmp"));
+  public getEmployee() {
+    return JSON.parse(localStorage.getItem('adminEmp'));
   }
   public getEmployees() {
-    return JSON.parse(sessionStorage.getItem("adminAllEmp"));
+    return JSON.parse(localStorage.getItem('adminAllEmp'));
   }
   public addEmployees(emp: Employee): Observable<string> {
     return this.http.post<string>(`${baseUrl}/admin`, emp);
@@ -50,4 +50,3 @@ export class AdminService {
     return this.http.delete<string>(`${baseUrl}/admin/${email}`);
   }
 }
-

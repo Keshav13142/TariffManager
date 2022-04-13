@@ -49,7 +49,7 @@ export class AdminAuthorizeComponent implements OnInit {
           (data: Employee[]) => {
             this.empList = data;
             this.setNotAuth();
-            sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
+            localStorage.setItem('adminAllEmp', JSON.stringify(data));
             this.snack.open('Employee Authorized', 'OK', {
               duration: 3000,
             });
@@ -72,16 +72,14 @@ export class AdminAuthorizeComponent implements OnInit {
   }
   view(empl: any) {
     const dialogRef = this.dialog.open(ViewemployeeComponent, { data: empl });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.setEmployees();
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   refresh() {
     this.adminService.setAllEmployees().subscribe(
       (data: Employee[]) => {
         this.empList = data;
         this.setNotAuth();
-        sessionStorage.setItem('adminAllEmp', JSON.stringify(data));
+        localStorage.setItem('adminAllEmp', JSON.stringify(data));
       },
       (error) => {
         console.log(error);
